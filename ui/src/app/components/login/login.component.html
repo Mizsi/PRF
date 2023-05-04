@@ -1,0 +1,27 @@
+
+<div class="centering">
+    <mat-card class="log-card">
+      <form [formGroup]="form" (ngSubmit)="login()">
+        <h3>Login</h3>
+        <mat-card id="alertCard" class="alert" *ngIf="alertMessage">
+          {{alertMessage}}
+        </mat-card>
+        <mat-form-field class="max-width">
+          <mat-label>Username</mat-label>
+          <input type="username" name="username" matInput placeholder="username" formControlName="username" >
+        </mat-form-field>
+        <mat-form-field class="max-width">
+          <mat-label>Password</mat-label>
+          <input type="password" name="password" matInput minlength="6" placeholder="password" formControlName="password" >
+        </mat-form-field>
+        <br>
+        <button type="submit" mat-raised-button color="primary" class="max-width"
+          [disabled]="form.invalid">LOGIN</button>
+        </form>
+        <br>
+        <br>
+        <div><button mat-button color="accent" (click)="goToRegister()">Don't have an account yet?</button></div>
+    </mat-card>
+  </div>
+
+  

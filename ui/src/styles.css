@@ -1,0 +1,48 @@
+@import '../node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css';
+
+html, body {
+  height: 100%;
+  background-color: #303030;
+  color: white;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.margin-right {
+  margin-right: 16px !important;
+}
+
+.max-width {
+  width: 100%;
+}
+
+.no-box {
+  box-shadow: 0;
+}
+
+.transparent {
+  background-color: transparent;
+}
+
+.centering {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: stretch;
+}
+
+.reg-card, .log-card {
+  width: 100vw;
+  height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .reg-card, .log-card {
+    max-width: 33em;
+    min-height: 40em;
+    height: auto;
+  }
+}

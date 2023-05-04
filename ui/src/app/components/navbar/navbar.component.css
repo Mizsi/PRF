@@ -1,0 +1,12 @@
+.splash-title, [mat-button] {
+  text-transform: capitalize;
+}
+
+[mat-button] {
+  margin-right: 16px;
+  float: right;
+}
+
+a[mat-button] {
+  font-size: xx-large;
+}

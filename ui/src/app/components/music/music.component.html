@@ -1,0 +1,19 @@
+<mat-card webOnHover (click)="getMusic.emit(music)">
+  <mat-card-header>
+    <mat-card-title>{{music.title}}</mat-card-title>
+    <mat-card-subtitle>
+      {{music.artist}}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <img *ngIf="music.img" [src]="music.img" alt="borito">
+  </mat-card-content>
+  <mat-card-actions *ngIf="hasAction">
+    <button mat-button (click)="toggleStar($event)">
+      <mat-icon *ngIf="music.star;else star" style="color: #e91e63;">star</mat-icon>
+      <ng-template #star>
+        <mat-icon>star_outline</mat-icon>
+      </ng-template>
+    </button>
+  </mat-card-actions>
+</mat-card>
