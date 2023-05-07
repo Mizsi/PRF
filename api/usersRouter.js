@@ -17,6 +17,7 @@ router.route('/login').post((req, res, next) => {
         if (error) return res.status(500).send(error);
         // Sikeres belépés esetén felhasználó beléptetése
         return res.status(200).send('Bejelentkezes sikeres');
+        //return
       })
     })(req, res); //a stratégiának átadjuk paraméterként a req, res objektumokat
   } else {

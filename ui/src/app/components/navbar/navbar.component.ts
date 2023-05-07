@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import{Menu_items} from "../../shared/database/menu_items";
+import{Menu_items_user} from "../../shared/database/menu_items";
+import { Menu_items_admin } from '../../shared/database/menu_items';
 import { LoginService } from 'app/utils/login.service';
 import { Router } from "@angular/router";
 
@@ -12,7 +13,8 @@ import { Router } from "@angular/router";
 
 export class NavbarComponent implements OnInit {
   user=localStorage.getItem('user')
-  menu_items?=Menu_items;
+  isAdmin=localStorage.getItem('isAdmin')
+  menu_items?:any;
   constructor(private loginService:LoginService, private router:Router){
 
   }
@@ -22,6 +24,12 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/login'])
   }
   ngOnInit(): void {
+    if(this.isAdmin=='true'){
+      this.menu_items=Menu_items_admin;
+    }else{
+      this.menu_items=Menu_items_user;
+    }
+    //console.log(this.user.isAdmin)
     //this.user=localStorage.getItem('user')
   }
 

@@ -7,7 +7,7 @@ const Track=mongoose.model('track')
 
 //const passport = require('passport');
 
-const multer = require("multer");
+//const multer = require("multer");
 //const GridFsStorage = require("multer-gridfs-storage");
 //const Grid = require('gridfs-stream');
 
@@ -40,10 +40,7 @@ router.post('/', async (req, res) => {
     //mp3_path:mp3_path
     
   });
-  console.log('log from tracksRouter.js: '+ track.title)
-  console.log('log from tracksRouter.js: '+ track.artist)
-  console.log('log from tracksRouter.js: '+ track.image_url)
-  console.log('log from tracksRouter.js: '+ track.video_url)
+  
   try {
     const newtrack = await track.save();
     res.status(201).json(newtrack);

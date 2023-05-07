@@ -25,7 +25,7 @@ export class TrackComponent implements OnInit {
 
   deleteTrack(title:string){
     this.service.deleteTrack(title).subscribe(d=>{})
-    window.location.reload();
+    //window.location.reload();
   }
 
 }

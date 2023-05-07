@@ -5,6 +5,7 @@ importálni kívánt modul tartalmaz futtatható kódot is, az ilyenkor automati
 bootstrap scripteket indítsunk a szerver indítása során. */
 const express = require('express');
 
+
 const cors= require('cors')
 // #2: a külső modulok importjait érdemes a fájlok elejére csoportosítani
 const mongoose = require('mongoose');
@@ -24,8 +25,6 @@ const expressSession = require('express-session');
 const app = express();
 
 
-
-const dbURL='mongodb+srv://admin:admin_pw99@prf-cluster.sgmeuxs.mongodb.net/SoundScape?retryWrites=true&w=majority'
 const dbURL_docker='mongodb://mongo/SoundScape'
 app.use(cors(
   {
@@ -137,6 +136,8 @@ app.use('/api/users', require('./usersRouter'))
 
 /* Az express.static() metódusban meg kell adnunk azt a mappát, amelyből a statikus fájlokat kiszolgáljuk. */ 
 app.use('', express.static('public'))
+
+app.use('*', express.static('public'))
 
 /* Az app.listen metódus elindítja a szervert a 3000 porton, és kiírja az üzenetet a konzolra egy callback függvénnyel. 
 Paraméterként várja a portszámot és a callback függvényt, amely akkor hívódik meg, amikor a szervert elindítjuk.

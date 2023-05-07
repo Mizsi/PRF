@@ -28,7 +28,13 @@ export class LoginComponent implements OnInit{
       this.loginService.login(this.form.value.username, this.form.value.password).subscribe(msg => {
         console.log(msg);
         localStorage.setItem('user', this.form.value.username)
-        this.router.navigate(['/home'])
+        this.router.navigate(['/home/trackSearch'])
+
+        if(this.form.value.username=='admin'){
+          localStorage.setItem('isAdmin','true')
+        }else{
+          localStorage.setItem('isAdmin','false')
+        }
         
 
       }, error => {

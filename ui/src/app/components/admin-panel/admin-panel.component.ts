@@ -4,7 +4,6 @@ import { Router } from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import { UserAddComponent } from '../user-add/user-add.component';
 import { User } from 'app/shared/model/user';
-import { Users } from 'app/shared/database/users';
 
 @Component({
   selector: 'app-admin-panel',
