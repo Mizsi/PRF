@@ -1,0 +1,6 @@
+img {
+  width: calc(100% + 32px);
+  height: 200px;
+  margin-left: -16px;
+}
+

@@ -28,6 +28,7 @@ export class RegistrationComponent implements OnInit{
   
 
   register() {
+      console.log('registraiton function called')
       if(this.form.value.password1==this.form.value.password2){
         this.alertMessage="";
         this.registrationService.register(this.form.value.username, this.form.value.password1).subscribe(msg => {

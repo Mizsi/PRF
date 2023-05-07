@@ -15,7 +15,7 @@ export class RegistrationService {
       password:password,
       isAdminAcces:false,
     };
-    return this.http.post(environment.serverURl,user,{responseType: 'text'});
+    return this.http.post(environment.serverURl+'api/user',user,{responseType: 'text'});
 
   //return this.http.post('http://localhost:3080/', user).subscribe((response: any) => {
   //console.log('Response:', response);

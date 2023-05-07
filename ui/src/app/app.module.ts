@@ -11,8 +11,9 @@ import { LoginModule } from './components/login/login.module';
 import { RegistrationModule } from './components/registration/registration.module';
 import { ExampleModule } from './components/example/example.module';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { MatIconModule } from '@angular/material/icon';
+import { AdminPanelModule } from './components/admin-panel/admin-panel.module';
+import { TrackAdminPanelModule } from './components/track-admin-panel/track-admin-panel.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,10 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     LoginModule,
     ExampleModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    AdminPanelModule,
+    TrackAdminPanelModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,7 +9,9 @@ import { Router } from "@angular/router";
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent implements OnInit {
+  user=localStorage.getItem('user')
   menu_items?=Menu_items;
   constructor(private loginService:LoginService, private router:Router){
 
@@ -20,6 +22,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/login'])
   }
   ngOnInit(): void {
+    //this.user=localStorage.getItem('user')
   }
 
 }

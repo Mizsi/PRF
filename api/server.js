@@ -9,6 +9,12 @@ const cors= require('cors')
 // #2: a külső modulok importjait érdemes a fájlok elejére csoportosítani
 const mongoose = require('mongoose');
 
+//Hang és képfájlok feltöltéséhez
+//const multer = require("multer");
+//const GridFsStorage = require("multer-gridfs-storage");
+//const Grid = require('gridfs-stream');
+
+
 // #3: erre a három modulra lesz szükségünk a bejelentkezés megvalósításához
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy; // létező third-party megoldás helyett saját logikát akarunk írni a bejelentkezésre
@@ -17,15 +23,16 @@ const expressSession = require('express-session');
 // Ezzel a paranccsal hozunk létre egy ExpressJS szerverappot, melyet paraméterezünk, ellátunk middleware-ekkel, majd elindítjuk
 const app = express();
 
-const corsOptions ={
-  origin:'http://localhost:3080', 
-  credentials:true,            //access-control-allow-credentials:true
-  optionSuccessStatus:200
-}
+
 
 const dbURL='mongodb+srv://admin:admin_pw99@prf-cluster.sgmeuxs.mongodb.net/SoundScape?retryWrites=true&w=majority'
 const dbURL_docker='mongodb://mongo/SoundScape'
-app.use(cors())
+app.use(cors(
+  {
+    credentials:true,
+    origin:'http://localhost:4200'
+  }
+))
 
 // #2 még mielőtt bármit csinálnánk a szerverünkkel, első lépésben rácsatlakozunk az adatbázisra
 mongoose.connect(dbURL, {
@@ -33,15 +40,30 @@ mongoose.connect(dbURL, {
   useUnifiedTopology: true, //ezek a paraméterek azért kellenek, hogy kompatibilisek legyünk akár régebbi Mongo verziókkal is
 });
 
+let gfs='';
 // #2 callback funkciók, amelyek az app.js indítását követően egyértelműen jelzik, hogy sikeres vagy sikertelen volt-e a db kapcsolódás
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', function () {
+  /* gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection('uploads'); */
   console.log('Connected to MongoDB successfully!');
 });
 
+/* const Storage=multer.diskStorage({
+  destination:'uploads',
+  filenameme:(req,file,cb)=>{
+    cb(null,file.originalname)
+  },
+});
+
+const upload=multer({
+  storage:Storage
+}).single('testImage') */
+
 // #2 importálom és regisztrálom a sémámat a mongodb 'user' kollekciójához
 const User = require('./model/userSchema');
+const Track=require('./model/trackSchema')
 
 // #2 a boostrapperről tudom, hogy egy függvényt exportál, itt rögtön a hivatkozás helyén meg is hívom azt
 require('./model/bootstrapper')();
@@ -95,7 +117,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.use('/',require('./usersRouter'));
+app.use('/api/user',require('./usersRouter'));
+app.use('/api/track',require('./tracksRouter'));
 
 // Az app.use() metódusban található függvény egy middleware, amely fut, amikor az alkalmazáshoz érkezik egy HTTP kérés.
 // A middleware-ek mindig az app.use-ok sorrendjének megfelelően futnak le, így végezhetünk majd a beérkező HTTP kérésen előfeldolgozást vagy autentikációt

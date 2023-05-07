@@ -1,6 +1,7 @@
 import { HomeComponent } from './home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TrackAdminPanelModule } from './../track-admin-panel/track-admin-panel.module';
 
 const routes:Routes=[
   {
@@ -8,9 +9,17 @@ const routes:Routes=[
     component:HomeComponent,
     children:[
       {
-        path:'MusicSearch',
-        loadChildren:()=>import('./../music-search/music-search.component.module').then(m=>m.MusicSearchModule)
-      }
+        path:'trackSearch',
+        loadChildren:()=>import('../track-search/track-search.component.module').then(m=>m.TrackSearchModule)
+      },
+      {
+        path: 'adminPanel',
+        loadChildren: () => import('./../admin-panel/admin-panel.module').then(m => m.AdminPanelModule),
+      },
+      {
+        path: 'trackAdminPanel',
+        loadChildren: () => import('./../track-admin-panel/track-admin-panel.module').then(m=>TrackAdminPanelModule)
+      },
     ],
   },
 ];

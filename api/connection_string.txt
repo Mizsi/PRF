@@ -1,0 +1,1 @@
+const dbURL='mongodb+srv://admin:admin_pw99@prf-cluster.sgmeuxs.mongodb.net/SoundScape?retryWrites=true&w=majority'
