@@ -5,7 +5,7 @@ importálni kívánt modul tartalmaz futtatható kódot is, az ilyenkor automati
 bootstrap scripteket indítsunk a szerver indítása során. */
 const express = require('express');
 
-const dbURL='mongodb+srv://admin:admin_pw99@prf-cluster.sgmeuxs.mongodb.net/SoundScape?retryWrites=true&w=majority'
+
 const cors= require('cors')
 // #2: a külső modulok importjait érdemes a fájlok elejére csoportosítani
 const mongoose = require('mongoose');
